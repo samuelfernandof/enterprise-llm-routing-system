@@ -58,75 +58,72 @@ llm-router/
 ├── requirements.txt
 └── main.py
 
-
-
-
 ```
 
-### Arquitetura do Sistema
+# Arquitetura do Sistema
 
-## 1. VIEW LAYER (Camada de Apresentação)
-- **Web Interface/API Gateway**: Ponto de entrada único para todas as requisições
-- **API Documentation**: Documentação OpenAPI/Swagger para os endpoints
+## 1. Camada de Apresentação (VIEW LAYER)
+- **Web Interface / API Gateway**: Ponto de entrada único para todas as requisições.
+- **API Documentation**: Documentação OpenAPI/Swagger para os endpoints.
 
-## 2. CONTROLLER LAYER (Camada de Controle)
-- **Route Controller**: Gerencia o roteamento inicial das requisições
-- **Auth Controller**: Controle de autenticação e autorização
-- **Prompt Controller**: Gerenciamento dos prompts e inputs
+## 2. Camada de Controle (CONTROLLER LAYER)
+- **Route Controller**: Gerencia o roteamento inicial das requisições.
+- **Auth Controller**: Controle de autenticação e autorização.
+- **Prompt Controller**: Gerenciamento dos prompts e inputs.
 
-## 3. MODEL LAYER (Camada de Modelo/Negócios)
+## 3. Camada de Modelo/Negócios (MODEL LAYER)
 
-### A. ROUTING ENGINE (🔀 Core do Sistema)
-- **Route Manager**: Gerencia as regras de roteamento
-- **Load Balancer**: Distribui carga entre os LLMs
-- **Request Router**: Determina qual LLM usar baseado em regras específicas
+### A. Core do Sistema (ROUTING ENGINE)
+- **Route Manager**: Gerencia as regras de roteamento.
+- **Load Balancer**: Distribui carga entre os LLMs.
+- **Request Router**: Determina qual LLM usar baseado em regras específicas.
 
-### B. CORE SERVICES
-- **Prompt Manager**: Gerencia e otimiza os prompts
-- **Context Manager**: Mantém e gerencia o contexto das conversas
-- **Prompt Engine**: Processa e prepara os prompts para os LLMs
+### B. Serviços Core (CORE SERVICES)
+- **Prompt Manager**: Gerencia e otimiza os prompts.
+- **Context Manager**: Mantém e gerencia o contexto das conversas.
+- **Prompt Engine**: Processa e prepara os prompts para os LLMs.
 
-### C. LLM PROVIDERS
+### C. Integrações com LLMs (LLM PROVIDERS)
 Integrações com diferentes LLMs:
-* Claude (Anthropic)
-* GPT-4 (OpenAI)
-* PaLM (Google)
-* Gemini (Google)
+- Claude (Anthropic)
+- GPT-4 (OpenAI)
+- PaLM (Google)
+- Gemini (Google)
 
-### D. DATA LAYER
-- **Database**: Armazenamento persistente
-- **Redis Cache**: Cache para respostas e contextos
-- **Message Queue**: Filas para processamento assíncrono
+### D. Camada de Dados (DATA LAYER)
+- **Database**: Armazenamento persistente.
+- **Redis Cache**: Cache para respostas e contextos.
+- **Message Queue**: Filas para processamento assíncrono.
 
 ## Fluxo de Dados:
-1. Requisição chega via API Gateway
-2. Passa pela autenticação
-3. Route Controller direciona para o Route Manager
-4. Load Balancer verifica disponibilidade dos LLMs
+1. Requisição chega via API Gateway.
+2. Passa pela autenticação.
+3. Route Controller direciona para o Route Manager.
+4. Load Balancer verifica disponibilidade dos LLMs.
 5. Request Router seleciona o LLM mais apropriado baseado em:
    - Regras de negócio
    - Disponibilidade
    - Capacidades específicas
    - Custos
    - Performance
-6. Prompt Engine prepara o prompt final
-7. Resposta é processada e cacheada se necessário
-8. Resultado retorna ao usuário
+6. Prompt Engine prepara o prompt final.
+7. Resposta é processada e cacheada se necessário.
+8. Resultado retorna ao usuário.
 
 ## Benefícios desta Arquitetura:
-1. Escalabilidade horizontal e vertical
-2. Alta disponibilidade
-3. Isolamento de responsabilidades
-4. Facilidade de manutenção
-5. Possibilidade de failover entre LLMs
-6. Gerenciamento eficiente de recursos
-7. Cache inteligente de respostas
-8. Processamento assíncrono quando necessário
+- **Escalabilidade**: Horizontal e vertical.
+- **Alta Disponibilidade**: Sistema sempre disponível.
+- **Isolamento de Responsabilidades**: Facilita manutenção e compreensão.
+- **Failover**: Alterna entre LLMs em caso de falhas.
+- **Gerenciamento Eficiente de Recursos**: Otimização no uso de LLMs.
+- **Cache Inteligente**: Reduz tempo de resposta e carga nos LLMs.
+- **Processamento Assíncrono**: Para tarefas que não precisam de resposta imediata.
 
-Esta arquitetura é particularmente eficiente para sistemas de LLM Routing porque:
-- Permite balanceamento de carga inteligente
-- Facilita a adição de novos LLMs
-- Gerencia eficientemente os custos
-- Mantém o contexto das conversas
-- Permite otimização de prompts
-- Oferece alta disponibilidade
+## Conclusão
+Esta arquitetura é particularmente eficiente para sistemas de LLM Routing, pois:
+- Permite balanceamento de carga inteligente.
+- Facilita a adição de novos LLMs.
+- Gerencia eficientemente os custos.
+- Mantém o contexto das conversas.
+- Otimiza os prompts.
+- Oferece alta disponibilidade.
