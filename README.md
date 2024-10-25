@@ -1,6 +1,8 @@
 # Enterprise LLM Routing System
 
-![Texto alternativo](https://github.com/samuelfernandof/enterprise-llm-routing-system/blob/main/llm-router/src/Captura%20de%20tela%202024-10-25%20112950.png)
+<div align="center">
+  <img src="https://github.com/samuelfernandof/enterprise-llm-routing-system/blob/main/llm-router/src/Captura%20de%20tela%202024-10-25%20112950.png" width="300" alt="Logo do projeto">
+</div>
 
 ### Estrutura do projeto
 ```bash
